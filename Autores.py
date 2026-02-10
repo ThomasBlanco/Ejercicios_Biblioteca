@@ -7,7 +7,7 @@ class Autor_modelo:
         self.pais = dato_pais
 
 
-    def registrar_datos(self):
+    def regstrar_datos(self):
         mensaje = " se registraron los datos"
         return mensaje
 
@@ -22,13 +22,18 @@ class Autor_modelo:
     def ver_info(self):
         print(f"nombre: {self.nombre} - apellido: {self.apellido} - edad: {self.edad} - año: {self.año} - pais: {self.pais}")
 
-    def __str__(self):
-        return f"[nombre: {self.nombre}, apellido: {self.apellido}, edad: {self.edad}, año: {self.año}, pais: {self.pais}]"
-
     # Getters usados por Api_lista_autores
     def get_nombre(self):
         return self.nombre
 
-    def get_fecha(self):
-        # Uso el año como fecha representativa
+    def get_apellido(self):
+        return self.apellido
+
+    def get_edad(self):
+        return self.edad
+
+    def get_año(self):
         return self.año
+
+    def get_pais(self):
+        return self.pais

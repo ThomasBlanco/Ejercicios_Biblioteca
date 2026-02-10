@@ -3,13 +3,13 @@ class base_datos_libro:
     def __init__(self):
         self.base_datos_libro = []
 
-    def guardar_libros(self, obj_libro):
+    def guardar_libro(self, obj_libro):
         self.base_datos_libro.append(obj_libro)
 
     def extender_libros(self, Nueva_lista):
         self.base_datos_libro.extend(Nueva_lista)
 
-    def insertar_libros(self, pos_index, obj_libro):
+    def insertar_libro(self, pos_index, obj_libro):
         self.base_datos_libro.insert(pos_index, obj_libro)
 
     def remover_libros(self, obj_libro):

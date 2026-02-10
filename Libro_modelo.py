@@ -9,6 +9,7 @@ class Libro_modelo:
         return self.cantidad_hojas
 
     def set_cantidad_hojas(self, dato):
+        self.cantidad_hojas = dato
         return self.cantidad_hojas
 
     def get_tematica(self):
@@ -20,9 +21,6 @@ class Libro_modelo:
     def get_genero(self):
         return self.genero
 
-
-    # hacer responsabilidades de la clase
-
     def registrar_cantidad_hojas(self):
         mensaje = "Se registraron en la base de datos"
         return mensaje
@@ -33,17 +31,14 @@ class Libro_modelo:
 
     def mostrar_cantidad_hojas(self):
         mensaje = " El libro tiene la siguiente cantidad: "
-        mensaje = mensaje + self.get_cantidad_hojas()
+        mensaje = mensaje + str(self.get_cantidad_hojas())
         return mensaje
 
     def registrar_tematica(self):
-        # sql
         mensaje = "Tematica registrada"
         return mensaje
 
     def mostrar_tematica(self):
-        # sql
-
         mensaje = self.get_tematica()
         return mensaje
 
