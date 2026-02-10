@@ -6,23 +6,7 @@ class Autor_modelo:
         self.año = dato_año
         self.pais = dato_pais
 
-
-    def regstrar_datos(self):
-        mensaje = " se registraron los datos"
-        return mensaje
-
-    def buscar_autor(self, dato_buscar):
-        mensaje = "autor existe en la base de datos" + dato_buscar
-        return mensaje
-
-    def dar_baja_autor(self, dato):
-        mensaje = "el autor esta inactivo" + dato
-        return mensaje
-
-    def ver_info(self):
-        print(f"nombre: {self.nombre} - apellido: {self.apellido} - edad: {self.edad} - año: {self.año} - pais: {self.pais}")
-
-    # Getters usados por Api_lista_autores
+    # getters
     def get_nombre(self):
         return self.nombre
 
@@ -37,3 +21,39 @@ class Autor_modelo:
 
     def get_pais(self):
         return self.pais
+
+    # setters
+    def set_nombre(self, dato_nombre):
+        self.nombre = dato_nombre
+        return True
+
+    def set_apellido(self, dato_apellido):
+        self.apellido = dato_apellido
+        return True
+
+    def set_edad(self, dato_edad):
+        self.edad = dato_edad
+        return True
+
+    def set_año(self, dato_año):
+        self.año = dato_año
+        return True
+
+    def set_pais(self, dato_pais):
+        self.pais = dato_pais
+        return True
+
+    # responsabilidades
+    def registrar_datos(self):
+        return f"Autor {self.nombre} {self.apellido} registrado correctamente"
+
+    def buscar_autor(self, dato_buscar):
+        if dato_buscar.lower() in self.nombre.lower() or dato_buscar.lower() in self.apellido.lower():
+            return True
+        return False
+
+    def dar_baja_autor(self):
+        return f"El autor {self.nombre} {self.apellido} ha sido dado de baja"
+
+    def ver_info(self):
+        print(f"Nombre: {self.nombre} | Apellido: {self.apellido} | Edad: {self.edad} | Año: {self.año} | País: {self.pais}")

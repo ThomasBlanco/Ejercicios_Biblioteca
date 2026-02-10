@@ -1,37 +1,52 @@
 from Autores import Autor_modelo
+
 class Api_lista_autores:
-    def __init__(self, lista_autores, nuevo_autor, indice, nombre_autor):
+    def __init__(self, lista_autores=None):
         self.Api_lista_autores = lista_autores if lista_autores is not None else []
-        self.nuevo_autor = nuevo_autor
-        self.indice = indice
-        self.nombre_autor = nombre_autor
     
+    # creo las responsabilidades de gestión de autores
     def guardar_autores(self, nuevo_autor):
-        datos_nuevos = [nuevo_autor.get_nombre(), nuevo_autor.get_apellido(), nuevo_autor.get_edad(), nuevo_autor.get_año(), nuevo_autor.get_pais()]
+        """Guarda un autor en la lista"""
+        datos_nuevos = [nuevo_autor.get_nombre(), nuevo_autor.get_apellido(), 
+        nuevo_autor.get_edad(), nuevo_autor.get_año(), nuevo_autor.get_pais()]
         self.Api_lista_autores.append(datos_nuevos)
+        return True
 
     def extender_libros(self, autores):
+        """Extiende la lista con múltiples autores"""
         for a in autores:
-            self.Api_lista_autores.extend([[a.get_nombre(), a.get_fecha()]])
+            datos_nuevos = [a.get_nombre(), a.get_apellido(), a.get_edad(), a.get_año(), a.get_pais()]
+            self.Api_lista_autores.extend([datos_nuevos])
+        return True
 
     def insertar_libros(self, indice, nuevo_autor):
-        datos_nuevos = [nuevo_autor.get_nombre(), nuevo_autor.get_fecha()]
+        """Inserta un autor en una posición específica"""
+        datos_nuevos = [nuevo_autor.get_nombre(), nuevo_autor.get_apellido(), 
+        nuevo_autor.get_edad(), nuevo_autor.get_año(), nuevo_autor.get_pais()]
         self.Api_lista_autores.insert(indice, datos_nuevos)
+        return True
 
     def remover_libros(self, nombre_autor):
+        """Remueve un autor por nombre"""
         for item in self.Api_lista_autores:
             if item and item[0] == nombre_autor:
                 self.Api_lista_autores.remove(item)
-                return
-        raise ValueError(f"Autor con nombre '{nombre_autor}' no encontrado")
+                return True
+        return False
 
     def eliminar_libros(self, indice=-1):
-        return self.Api_lista_autores.pop(indice)
+        """Elimina un autor por índice"""
+        if 0 <= indice < len(self.Api_lista_autores) or indice == -1:
+            self.Api_lista_autores.pop(indice)
+            return True
+        return False
 
     def buscar_libros(self, nombre_autor):
+        """Busca autores por nombre"""
         return [item for item in self.Api_lista_autores if item and item[0] == nombre_autor]
 
     def contar_libros(self, nombre_autor):
+        """Cuenta autores con un nombre específico"""
         count = 0
         for item in self.Api_lista_autores:
             if item and item[0] == nombre_autor:
@@ -39,12 +54,17 @@ class Api_lista_autores:
         return count
 
     def ordenar_libros(self, reverse=False):
+        """Ordena autores alfabéticamente"""
         self.Api_lista_autores.sort(key=lambda autor: autor[0], reverse=reverse)
+        return True
 
     def invertir_libros(self):
+        """Invierte el orden de la lista"""
         self.Api_lista_autores.reverse()
+        return True
 
     def mostrar_lista_autores(self):
+        """Muestra todos los autores registrados"""
         if not self.Api_lista_autores:
             print("No hay autores registrados")
             return
@@ -54,4 +74,9 @@ class Api_lista_autores:
             edad = self.Api_lista_autores[i][2]
             año = self.Api_lista_autores[i][3]
             pais = self.Api_lista_autores[i][4]
-            print(f"AUTOR #{i+1}: nombre: {nombre} | apellido: {apellido} | edad: {edad} | nacimiento: {año} | país: {pais}")
+            print(f"AUTOR #{i+1}: {nombre} {apellido} | Edad: {edad} | Nacimiento: {año} | País: {pais}")
+    
+    def contar_total_autores(self):
+        """Retorna el total de autores en la lista"""
+        count = len(self.Api_lista_autores)
+        return count
